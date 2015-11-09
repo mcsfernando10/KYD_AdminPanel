@@ -1,0 +1,10 @@
+body {
+    background-color: #F8F8F8 ;
+}
+
+#loginPanel{
+	position: relative;
+	top: 25%;
+	bottom:25%;
+	transform: translateY(25%);
+}

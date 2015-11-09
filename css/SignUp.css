@@ -1,0 +1,10 @@
+body {
+    background-color: #F8F8F8 ;
+}
+
+#SignUpForm{
+	position: relative;  
+	top: 10%;
+	bottom:10%;
+	transform: translateY(5%);
+}

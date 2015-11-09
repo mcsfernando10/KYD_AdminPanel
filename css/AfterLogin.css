@@ -1,0 +1,12 @@
+/*.contentPanel{
+	border-left:1px solid #000;
+}
+
+.headerPanel{
+	border-bottom:1px solid #000;
+}
+*/
+
+#pageContent{
+	padding-left:10px;
+}

@@ -19,11 +19,11 @@
                             <form id="passwordReset" class="form-horizontal" method="post">
 								<div class="form-group">
 									<label for="inputOldPassword" class="col-sm-4 control-label">
-										Old Password
+										Current Password
 									</label>
 									<div class="col-sm-7">
 										<input type="password" class="form-control"
-											name="inputCurrentPassword" placeholder="Enter Old Password"
+											name="inputCurrentPassword" placeholder="Enter Current Password"
 											id="currentPassword" autofocus/>
 									</div>
 								</div>

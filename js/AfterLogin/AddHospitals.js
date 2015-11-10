@@ -1,58 +1,119 @@
-$(function() {
-    initialize_hos();
+//Variables to store hospital details
+var hospitalName;
+var address;
+var district;
+var phoneNo;
+var latitude;
+var longtitude;
+
+//Initialize the map
+var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 6.922273, lng: 79.865967},
+    zoom: 15
 });
 
-var map_hos;
-var infowindow;
-function initialize_hos() {
-    var hospital = new google.maps.LatLng(6.9344, 79.8428);
-    map_hos = new google.maps.Map(document.getElementById('hospital'), {
-        center: hospital,
-        zoom: 15
-    });
-    var image_hospital = new google.maps.MarkerImage(
-        "http://www.myvirtualadmin.co.uk/wp-content/uploads/2011/04/location-place.png",
-        null, null, null, new google.maps.Size(40,52)); // Create a variable for our marker image.
-    var marker = new google.maps.Marker({ // Set the marker
-        position: hospital, // Position marker to coordinates
-        icon:image_hospital, //use our image as the marker
-        map: map_hos, // assign the market to our map variable
-        title: 'Click to visit our company on Google Places', // Marker ALT Text
-        animation:google.maps.Animation.BOUNCE
-    });
-    var request_hos = {
-        location: hospital,
-        radius: 1000,
-        types: ['hospital']
-    };
-    infowindow = new google.maps.InfoWindow();
-    var service_hos = new google.maps.places.PlacesService(map_hos);
-    service_hos.nearbySearch(request_hos, callback_hos);
+// Create the marker with a title.
+var myLatlng = new google.maps.LatLng(6.922273,79.865988);
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    title:"Sri Lanka Medical Council"
+});
 
-}
-function callback_hos(results, status) {
+// Add the marker to the map with a call to setMap();
+marker.setMap(map);
+
+//Place Hospitals
+var request = {
+    location: myLatlng ,
+    radius: 1000000,
+    types: ['hospital']
+};
+
+//Service to get all hospitals
+service = new google.maps.places.PlacesService(map);
+service.nearbySearch(request, callback);
+
+//Add all hospitals to google map
+function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createMarker_hos(results[i]);
+            var place = results[i];
+            createMarker(results[i]);
         }
     }
 }
-function createMarker_hos(place) {
+//Create markers of hospitals
+var image_hospital = new google.maps.MarkerImage(window.location.origin
+    + "/knowyourdoctor/img/AfterLogin/HospitalIcon.png",
+    null, null, null, new google.maps.Size(40,40));
+
+function createMarker(place) {
     var placeLoc = place.geometry.location;
-
-    var image = new google.maps.MarkerImage("Hospital-128.png", null, null, null, new google.maps.Size(40,52)); // Create a variable for our marker image.
-    var marker = new google.maps.Marker({ // Set the marker
-        position: placeLoc, // Position marker to coordinates
-        icon:image, //use our image as the marker
-        map: map_hos, // assign the market to our map variable
-        title: 'Click to visit our company on Google Places', // Marker ALT Text
-
-        //animation:google.maps.Animation.BOUNCE
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        title: place.name,
+        icon:image_hospital,
+        animation:google.maps.Animation.BOUNCE
     });
+
+    var infoWindow = new google.maps.InfoWindow();
+    //Add mouse click event to hospital markers
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name);
-        infowindow.open(map_hos, this);
+        service.getDetails(place, function(result, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                console.error(status);
+                return;
+            }
+            infoWindow.setContent(result.name);
+            infoWindow.open(map, marker);
+            //Set variables
+            hospitalName = place.name;
+            address = result.formatted_address;
+            district = "";
+            phoneNo = result.formatted_phone_number;
+            latitude = result.geometry.location.lat;
+            longtitude = result.geometry.location.lng;
+            //Set Input boxes
+            $('#hospitalName').val(hospitalName);
+            $('#hospitalAddress').val(address);
+            $('#hospitalPhoneNo').val(phoneNo);
+        });
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize_hos);
+//AJAX call to add hospital to database
+function addHospitalToDb()
+{
+    //Check whether a hospital is selected or not
+    if(undefined  == hospitalName){
+        alert("Please select a Hospital from Markers");
+    } else {
+        //Button click of add hospital
+        var confirmation = confirm("Are you sure to add this hospital?");
+        if (confirmation == true) {
+            //Create json array
+            hospitalDetail = {"name":hospitalName, "address":address,
+                "district":district, "phoneNo":phoneNo, "latitude":latitude, "longtitude" : longtitude };
+            //Call relevant method to add hospital to db
+            var submitLocationPageURL = window.location.origin
+                + "/knowyourdoctor/index.php/AfterLoginControllers/AddHospitalsController/addNewHospital";
+            $.ajax({
+                url: submitLocationPageURL,
+                dataType:'JSON',
+                data: {"hospitalDetails" : hospitalDetail},
+                type: "POST",
+                success: function(res) {
+                    alert("Hospital details added successful!!");
+                }
+            });
+        }
+        //Clear textboxes
+        $('#hospitalName').val("Hospital Name");
+        $('#hospitalAddress').val("Hospital Address");
+        $('#hospitalPhoneNo').val("Hospital Phone No");
+
+        //For validations - clear hospitalName
+        hospitalName = undefined;
+    }
+}

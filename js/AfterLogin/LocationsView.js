@@ -1,8 +1,5 @@
 $(document).ready(function(){
     $('#locationsTable').DataTable();
-});
-
-$(document).ready(function(){
     $('#analysedLocationsTable').DataTable();
 });
 

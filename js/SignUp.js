@@ -76,13 +76,14 @@ $(document).ready(function() {
 		}
 	});
 
-	//Validate password
+	//Validate password - new password
 	$('#typedPassword').bind('input', function() {
 		var typedPassword = $(this).val();
 		var confirmPassword = $("#confirmPassword").val();
 		checkValidation(typedPassword,confirmPassword);
 	});
 
+	//Validate password - confirm password
 	$('#confirmPassword').bind('input', function() {
 		var typedPassword = $("#typedPassword").val();
 		var confirmPassword = $(this).val();
@@ -121,7 +122,7 @@ $(document).ready(function() {
 
 });
 
-
+//Compare two texts and give errors accordingly
 function checkValidation(value1,value2) {
 	var errorTag = $('#inputError');
 	//Clear text
@@ -131,7 +132,8 @@ function checkValidation(value1,value2) {
 	
 	var confirmPWInputField = $('#confirmPWInputVal');
 	var confirmPWValidation = $('#confrimPasswordValidation');
-	
+
+	//value1 is empty and value1 and value2 doesn't equal
 	if ((value1.length) == 0 || (value1!=value2)) { 
 		passwordInputField.removeClass('has-success');
 		passwordInputField.addClass('has-error');

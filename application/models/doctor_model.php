@@ -1,5 +1,7 @@
 <?php
+//Model - Doctor Model
 class doctor_model extends CI_Model{
+    //Insert doctor details to db which are not having on the db
     public function insertDoctorDetail($docDetails){
         $doctorID = $docDetails['docid'];
         $this->db->select("*");

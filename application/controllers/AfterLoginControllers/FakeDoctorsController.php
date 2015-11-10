@@ -1,5 +1,5 @@
 <?php
-//Controller of the add Hospitals View
+//Controller of the Fake Doctors View
 class FakeDoctorsController extends CI_Controller{
     public function index(){
         $this->load->model('fake_doctor_model');
@@ -7,6 +7,7 @@ class FakeDoctorsController extends CI_Controller{
         $this->load->view('AfterLoginViews/fakeDoctorsView',$data);
     }
 
+    //Remove selected fake doctor detail report id
     public function removeReport($reportID){
         $this->load->model('fake_doctor_model');
         $this->fake_doctor_model->removeReportOf($reportID);

@@ -1,10 +1,12 @@
 $(document).ready(function() {
+	//Validate password after each key press
 	$('#newPassword').bind('input', function() {
 		var typedPassword = $(this).val();
 		var confirmNewPassword = $('#confirmNewPassword').val();
 		checkValidation(typedPassword,confirmNewPassword);
 	});
 
+	//Validate password after each key press
 	$('#confirmNewPassword').bind('input', function() {
 		var newPassword = $('#newPassword').val();
 		var confirmNewPassword = $(this).val();
@@ -12,6 +14,7 @@ $(document).ready(function() {
 	});
 });
 
+//To update password
 function updatePassword(){
 	var confirmation = confirm("Are you sure to update your password?");
 	if (confirmation == true) {
@@ -37,6 +40,7 @@ function updatePassword(){
 	}
 }
 
+//To compare passwords (new and confirm passwords)
 function checkValidation(value1,value2) {
 	//Do the validation
 	var passwordInputField = $('#passwordInputVal');
@@ -121,7 +125,8 @@ function changePassword() {
 	} else {		
 		errorTag.text("Please fill all the fields");
 	}
-	
+
+	//Clear password fields
 	document.getElementById("currentPassword").value = "";
 	document.getElementById("newPassword").value = "";
 	document.getElementById("confirmNewPassword").value = "";	
@@ -133,7 +138,7 @@ function changePassword() {
 	var confirmPWInputField = $('#confirmPWInputVal');
 	var confirmPWValidation = $('#confrimPasswordValidation');
 
-	passwordInputField.removeClass('has-success');	
+	passwordInputField.removeClass('has-success');
 	passwordValidation.removeClass('glyphicon-ok');
 	
 	confirmPWInputField.removeClass('has-success');

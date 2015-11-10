@@ -1,10 +1,13 @@
 <?php
+//Model - Admin Model
 class admin_user_model extends CI_Model{
+    //Insert new admin details to db
     public function insertAdminUser($newAdminData){
         $queryExecution = $this->db->insert('adminusers',$newAdminData);
         return $queryExecution;
     }
 
+    //Check username and password matches
     public function isUserNameAndPasswordMatched($loginData){
         $this->db->select("username","password");
         $this->db->from("adminusers");
@@ -20,6 +23,7 @@ class admin_user_model extends CI_Model{
         }
     }
 
+    //Get name from username
     public function getName($username){
         $this->db->select("name");
         $this->db->from("adminusers");
@@ -29,13 +33,14 @@ class admin_user_model extends CI_Model{
         return $name;
     }
 
+    //Check username availability
     public function isUserNameAvailable($userName){
         $this->db->select("username");
         $this->db->from("adminusers");
         $this->db->where("username",$userName);
 
         $userNameRow = $this->db->get();
-
+        //if no rows are in the table, username is available
         if($userNameRow->num_rows() == 0) {
             return true;
         } else {
@@ -43,11 +48,13 @@ class admin_user_model extends CI_Model{
         }
     }
 
+    //Get all admin details
     public function getAllAdmins(){
         $toGetAllAdminsData = $this->db->select('*')->from('adminusers')->get();
         return $toGetAllAdminsData->result();
     }
 
+    //update password and return updated state
     public function isPasswordUpdated($username, $currentPassword, $newPassword){
         $this->db->select("*");
         $this->db->from("adminusers");
@@ -64,6 +71,7 @@ class admin_user_model extends CI_Model{
         }
     }
 
+    //Delete admin account details
     public function deleteAdmin($username){
         $this->db->where('username',$username)->delete('adminusers');
     }

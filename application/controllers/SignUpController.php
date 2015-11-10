@@ -1,9 +1,11 @@
 <?php
+//Controller of the Sign View
 class SignUpController extends CI_Controller{
     public function index(){
         $this->load->view('signUpView');
     }
 
+    //Insert new admin details to the db
     public function insertNewAdmin(){
         $userName = $this->input->post('inputUserName');
         //Encrypt password
@@ -31,6 +33,7 @@ class SignUpController extends CI_Controller{
         }
     }
 
+    //Check typed username exists or not
     public function checkUsernameAvailability($userName){
         $this->load->model('admin_user_model');
         echo $this->admin_user_model->isUserNameAvailable($userName);

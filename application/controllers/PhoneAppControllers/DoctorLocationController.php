@@ -1,11 +1,8 @@
 <?php
+//Controller For Mobile side - To Submit doctor's location
 class DoctorLocationController extends CI_Controller
 {
-    public function index()
-    {
-
-    }
-
+    //Insert raw location details
     public function insertLocation(){
         header('Content-type: application/json');
         $docLocationData = json_decode(file_get_contents('php://input'),true);
@@ -20,9 +17,9 @@ class DoctorLocationController extends CI_Controller
             'qualifications' => $docLocationData['docQualifications']
         );
 
-
         date_default_timezone_set("Asia/Colombo");
-        $date = date("Y-m-d h:i:sa");    
+        $date = date("Y-m-d H:i:sa");
+        //Get the day from the date
         $day = date("l");
         $locationDetails = array(
             'locationid' => $docLocationData['locationID'],

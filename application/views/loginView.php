@@ -4,8 +4,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/Login.css'?>"/>
     </head>
     <body>
-        <!--?php echo validation_errors(); ?-->
-        <!--?php form_open('LoginController/checkLogin');?-->
         <div class="container">
             <div class="row">
                 <!--p>&nbsp</p-->
@@ -13,11 +11,13 @@
                 <div class="col-lg-6 col-sm-6" id="loginPanel">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <img class="img-responsive" src="<?php echo base_url().'img/Login/loginheading.png'?>" alt="Admin Login"/>
+                            <img class="img-responsive" src="<?php echo base_url().'img/Login/loginheading.png'?>"
+                                alt="Admin Login"/>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form id="LoginForm" class="form-horizontal" method="post" action="LoginController/checkLogin">
+                                <form id="LoginForm" class="form-horizontal" method="post"
+                                    action="<?php echo base_url().'index.php/LoginController/checkLogin'?>">
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-offset-1 col-sm-2 control-label">
                                             UserName
@@ -49,11 +49,9 @@
                                     ?>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="rememberMe"/> Remember me
-                                                </label>
-                                            </div>
+                                            <a href="<?php echo base_url().'index.php/LoginController'?>">
+                                                Forgot my password
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -62,7 +60,8 @@
                                                 Login
                                             </button>
                                             or
-                                            <a class="btn btn-default" href="<?php echo base_url().'index.php/SignUpController'?>">
+                                            <a class="btn btn-default"
+                                                href="<?php echo base_url().'index.php/SignUpController'?>">
                                                 Sign Up
                                             </a>
                                         </div>

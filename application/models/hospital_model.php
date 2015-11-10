@@ -1,5 +1,7 @@
 <?php
+//Model - Hospital Model
 class hospital_model extends CI_Model{
+    //Get all nearest hospitals for current location
     public function getAllHospitalsOf($latitude, $longtitude){
         $query = "SELECT * ";
         $query .= "FROM (SELECT u.id, u.name, u.address, u.district, u.latitude, u.longtitude, ";
@@ -13,17 +15,20 @@ class hospital_model extends CI_Model{
         return json_encode($hospitalJSONData);
     }
 
+    //Add hospitals to db
     public function addNewHospitalToDB($hospitalDetail){
         $queryExecution = $this->db->insert('hospitals',$hospitalDetail);
         return $queryExecution;
     }
 
+    //Get all hospitals from db
     public function getAllHospitals(){
         $toGetAllHospitals = $this->db->select('*')->
         from('hospitals')->get();
         return $toGetAllHospitals->result();
     }
 
+    //Delete hospital of given hospital id
     public function deleteHospital($hospitalID){
         $this->db->where('id',$hospitalID)->delete('hospitals');
     }

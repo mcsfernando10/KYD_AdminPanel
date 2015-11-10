@@ -9,7 +9,8 @@ function removeFakeReport(reportID) {
         var tableRowId = "#" + reportID + "TR";
         $(tableRowId).remove();
         //Delete admin account
-        var URLToCallController = window.location.origin + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
+        var URLToCallController = window.location.origin
+            + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
         $.ajax({
             url: URLToCallController,
             type: "POST"
@@ -26,7 +27,8 @@ function generateReport() {
         /*var tableRowId = "#" + reportID + "TR";
          $(tableRowId).remove();
          //Delete admin account
-         var URLToCallController = window.location.origin + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
+         var URLToCallController = window.location.origin
+            + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
          $.ajax({
          url: URLToCallController,
          type: "POST"

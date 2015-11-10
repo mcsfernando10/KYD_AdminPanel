@@ -1,10 +1,11 @@
 <?php
+//Controller of the AFter Login View
 class AfterLoginController extends CI_Controller{
-
     public function index(){
         $this->isLoggedIn();
     }
 
+    //Check whether the admin logged in or not
     public function isLoggedIn(){
         $isLoggedIn = $this->session->userdata('isLoggedIn');
         //check if session variable was not created or not
@@ -21,6 +22,7 @@ class AfterLoginController extends CI_Controller{
         }
     }
 
+    //Destroy session variable for logout
     public function logout(){
         //Destroy session and redirect to login page
         $this->session->sess_destroy();

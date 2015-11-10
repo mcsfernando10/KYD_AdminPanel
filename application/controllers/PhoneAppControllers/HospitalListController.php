@@ -1,8 +1,7 @@
 <?php
+//Controller For Mobile side - To control the hospitals list
 class HospitalListController extends CI_Controller{
-    public function index(){
-
-    }
+    //Get all hospitals around current location
     public function getAllHospitals(){
         header('Content-type: application/json');
         $currentCoordinates = json_decode(file_get_contents('php://input'),true);

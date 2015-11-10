@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('#locatedDoctorTable').DataTable();
 });
 
+//To display doctors with having submitted locations
 function loadLocatedDoctors(){
     $('#loader').show();
     $('#pageContent').empty();
@@ -16,6 +17,7 @@ function loadLocatedDoctors(){
     });
 }
 
+//To display submitted locations for selected doctor
 function viewLocations(docid,docName) {
     $("#tableView").empty();
     $('#tableView').prepend("<img class='img-responsive' src='"+window.location.origin +

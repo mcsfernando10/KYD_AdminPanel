@@ -1,3 +1,4 @@
+//To display comments of doctors
 function loadCommentedDoctors(){
     $('#loader').show();
     $('#pageContent').empty();
@@ -12,6 +13,7 @@ function loadCommentedDoctors(){
     });
 }
 
+//To display the comments of selected doctor
 function viewComments(docid,docName) {
     $("#tableView").empty();
     $('#tableView').prepend("<img class='img-responsive' src='"+window.location.origin + "/knowyourdoctor/img/loading.gif' id='loadingIcon'/>");

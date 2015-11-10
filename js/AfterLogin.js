@@ -1,19 +1,23 @@
 $(function() {
+	//change acitve tab for user clicks
 	$("#MainMenu ul li").click(function(evt) {
 		var currentTab = $('#MainMenu ul li.active');
 			currentTab.removeClass('active');	
 			$(this).addClass('active');					
 	});
 
-	$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+	/*$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 		options.async = true;
-	});
+	});*/
 
+	//Common URL
 	var commonURL = window.location.origin + "/knowyourdoctor/index.php/AfterLoginControllers/";
 	//$('#pageContent').empty();
 	//$('#pageContent').prepend("<img class='img-responsive' src='"+window.location.origin + "/knowyourdoctor/img/loading.gif' id='loadingIcon'/>");
 	//set initial page
+	//Hide page content
 	$('#pageContent').hide();
+	//To load first page to pageContent
 	$.ajax({
 		url: commonURL + "RatedDoctorsController",
 		type: "POST",
@@ -35,7 +39,7 @@ $(function() {
 	setPageForButtonClick("#settingsView", commonURL + "SettingsController");
 });
 
-//AJAX Code
+//AJAX Code for given button
 function setPageForButtonClick(buttonID,pageURL){
 	$(buttonID).click(function(){
 		$('#loader').show();

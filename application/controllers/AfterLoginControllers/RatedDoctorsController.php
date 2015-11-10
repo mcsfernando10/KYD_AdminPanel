@@ -1,4 +1,5 @@
 <?php
+//Controller of the Rated Doctors View
 class RatedDoctorsController extends CI_Controller{
     public function index(){
         $this->load->model('commented_doctor_model');

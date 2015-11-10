@@ -1,9 +1,7 @@
 <?php
+//Controller For Mobile side - To control the located doctors list
 class LocatedDoctorListController extends CI_Controller{
-    public function index(){
-
-    }
-
+    //Get all located doctors around current location
     public function getAllLocatedDoctors(){
         header('Content-type: application/json');
         $currentCoordinates = json_decode(file_get_contents('php://input'),true);

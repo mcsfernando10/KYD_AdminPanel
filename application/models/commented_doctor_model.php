@@ -1,20 +1,17 @@
 <?php
+//Model - Commented Doctor Model (Doctors who are having comments from users)
 class commented_doctor_model extends CI_Model{
+    //To get all commented doctors from db
     public function getAllRatedDoctors(){
-        $toGetAllRatedDocData = $this->db->select('dd.docid, dd.docname, dd.address, dd.regdate, dd.qualifications, d.*')->
+        $toGetAllRatedDocData = $this->db->
+                                select('dd.docid, dd.docname, dd.address, dd.regdate, dd.qualifications, d.*')->
                                 from('analysedocrating a')->
                                 join('docrating d','a.topcommentid = d.commentid')->
                                 join('docdetails dd','dd.docid = a.docid','INNER')->get();
         return $toGetAllRatedDocData->result();
     }
 
-    public function getAllNonRatedDoctors(){
-        $toGetAllNonRatedDocData = $this->db->select('a.docid, a.docname, a.address, a.regdate, a.qualifications')->
-        from('analysedocrating a')->
-        where('a.topcommentid is null')->get();
-        return $toGetAllNonRatedDocData->result();
-    }
-
+    //Insert new comment for given doctor
     public function insertRating($docDetails,$commentDetails){
         //Check doctor id exists or not in docdetails table
         $doctorID = $docDetails['docid'];
@@ -80,6 +77,8 @@ class commented_doctor_model extends CI_Model{
         $this->db->update('analysedocrating',$newData);*/
     }
 
+    /*Get all comments for given doctor id from analyseddocrating and docrating table
+    Used in Mobile Controller - DoctorRatingController */
     public function getAllCommentsOf($doctorID){
         $this->db->select("*");
         $this->db->where("docid", $doctorID);
@@ -93,6 +92,7 @@ class commented_doctor_model extends CI_Model{
         return json_encode($newData);
     }
 
+    //Update likes for given comment id and mode(increment no of likes or decrement no of likes for respective comment)
     public function updateLikesOf($commentID,$incrementOrDecrement){
         if($incrementOrDecrement) {
             $this->db->where('commentid', $commentID);
@@ -132,6 +132,7 @@ class commented_doctor_model extends CI_Model{
         $this->db->update('analysedocrating',$updateDetails);
     }
 
+    //Get all comments for given doctor id(used in CommentsController)
     public function getAllComments($docid){
         $toGetAllComments = $this->db->select('*')->
         from('docrating')->
@@ -139,6 +140,7 @@ class commented_doctor_model extends CI_Model{
         return $toGetAllComments->result();
     }
 
+    //Delete comment for given comment id
     public function deleteComment($commentID){
         $this->db->where('commentid',$commentID)->delete('docrating');
     }

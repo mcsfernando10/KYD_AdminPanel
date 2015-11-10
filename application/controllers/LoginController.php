@@ -1,10 +1,12 @@
 <?php
+//Controller of the Login View
 class LoginController extends CI_Controller{
     public function index(){
         $this->load->view('loginView');
         //$this->isLoggedIn();
     }
 
+    //Check whether the session variable is created or not
     public function isLoggedIn(){
         $isLoggedIn = $this->session->userdata('isLoggedIn');
         //check if session variable was not created or not
@@ -20,6 +22,7 @@ class LoginController extends CI_Controller{
         }
     }
 
+    //Check username or password exists or not
     public function checkLogin(){
         $userName = $this->input->post('inputUserName');
         //Encrypt password
@@ -31,7 +34,7 @@ class LoginController extends CI_Controller{
         );
         $this->load->model('admin_user_model');
         $execution = $this->admin_user_model->isUserNameAndPasswordMatched($loginData);
-        //if user details exists in the db
+        //check whtether the user details exists in the db or not
         if($execution){
             $sessionData = array(
                 'username' => $userName,

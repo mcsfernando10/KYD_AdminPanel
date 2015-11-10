@@ -9,7 +9,8 @@ function removeComment(commentID) {
         var tableRowId = "#" + commentID + "TR";
         $(tableRowId).remove();
         //Delete admin account
-        var URLToCallController = window.location.origin + "/knowyourdoctor/index.php/AfterLoginControllers/CommentsController/removeComment/" + commentID;
+        var URLToCallController = window.location.origin
+            + "/knowyourdoctor/index.php/AfterLoginControllers/CommentsController/removeComment/" + commentID;
         $.ajax({
             url: URLToCallController,
             type: "POST"

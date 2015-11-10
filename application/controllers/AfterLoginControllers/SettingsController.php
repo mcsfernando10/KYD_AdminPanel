@@ -18,7 +18,7 @@ class SettingsController extends CI_Controller{
         //Check whether the password updated successful or not
         $isSuccess = $this->admin_user_model->isPasswordUpdated($userName,$currentPassword,$newPassword);
 
-        return $isSuccess;
+        echo $isSuccess;
     }
 }
 ?>

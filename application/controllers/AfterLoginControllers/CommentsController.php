@@ -1,10 +1,6 @@
 <?php
 //Controller of the Comments View
 class CommentsController extends CI_Controller{
-    public function index(){
-
-    }
-
     //Get all comments for selected doctor
     public function viewComments($docid){
         $this->load->model('commented_doctor_model');

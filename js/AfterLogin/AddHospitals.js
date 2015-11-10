@@ -10,7 +10,9 @@ function initialize_hos() {
         center: hospital,
         zoom: 15
     });
-    var image_hospital = new google.maps.MarkerImage("http://www.myvirtualadmin.co.uk/wp-content/uploads/2011/04/location-place.png", null, null, null, new google.maps.Size(40,52)); // Create a variable for our marker image.
+    var image_hospital = new google.maps.MarkerImage(
+        "http://www.myvirtualadmin.co.uk/wp-content/uploads/2011/04/location-place.png",
+        null, null, null, new google.maps.Size(40,52)); // Create a variable for our marker image.
     var marker = new google.maps.Marker({ // Set the marker
         position: hospital, // Position marker to coordinates
         icon:image_hospital, //use our image as the marker

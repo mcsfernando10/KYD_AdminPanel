@@ -16,27 +16,35 @@ $(document).ready(function() {
 
 //To update password
 function updatePassword(){
-	var confirmation = confirm("Are you sure to update your password?");
-	if (confirmation == true) {
-		$.ajax({
-			url: window.location.origin + "/knowyourdoctor/index.php/AfterLoginControllers/SettingsController/updatePassword",
-			type: "POST",
-			data: {'currentPassword': $('#currentPassword').val(), 'newPassword': $('#newPassword').val()},
-			success: function (res) {
-				if (res) {
-					alert("Password changed successful!");
-				} else {
-					alert("Current password you entered is incorrect!");
-				}
-			}
-		});
-
-		//Clear textfields
-		$('#currentPassword').val("");
-		$('#newPassword').val("");
-		$('#confirmNewPassword').val("");
+	//Check all fields are filled
+	var currentPassword = $('#currentPassword').val();
+	var newPassword = $('#newPassword').val();
+	var confirmNewPassword = $('#confirmNewPassword').val();
+	if(currentPassword.length == 0 && newPassword.length == 0 && confirmNewPassword.length == 0){
+		alert("Please fill all the fields");
 	} else {
+		var confirmation = confirm("Are you sure to update your password?");
+		//check confirmation
+		if (confirmation == true) {
+			$.ajax({
+				url: window.location.origin
+					+ "/knowyourdoctor/index.php/AfterLoginControllers/SettingsController/updatePassword",
+				type: "POST",
+				data: {'currentPassword': currentPassword, 'newPassword': newPassword},
+				success: function (res) {
+					if (res) {
+						alert("Password changed successful!");
+					} else {
+						alert("Current password you entered is incorrect!");
+					}
+				}
+			});
 
+			//Clear textfields
+			$('#currentPassword').val("");
+			$('#newPassword').val("");
+			$('#confirmNewPassword').val("");
+		}
 	}
 }
 

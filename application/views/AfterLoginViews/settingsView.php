@@ -16,7 +16,7 @@
                     </div>
                     <div class="panel-body" id="commentPanel">
                         <div class="row">
-                            <form id="passwordReset" class="form-horizontal" method="post" action="AfterLoginControllers/SettingsController/updatePassword">
+                            <form id="passwordReset" class="form-horizontal" method="post">
 								<div class="form-group">
 									<label for="inputOldPassword" class="col-sm-4 control-label">
 										Old Password

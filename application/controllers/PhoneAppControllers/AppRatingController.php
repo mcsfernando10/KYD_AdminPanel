@@ -1,10 +1,6 @@
 <?php
 //Controller For Mobile side - To Rate Mobile app
 class AppRatingController extends CI_Controller{
-    public function index(){
-
-    }
-
     //Insert new rating to db
     public function insertAppNewRating(){
         header('Content-type: application/json');

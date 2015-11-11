@@ -4,9 +4,9 @@
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="col-sm-offset-2">
+                        <div align="center">
                             <h3>
                                 Add Hospitals
                             </h3>
@@ -32,9 +32,10 @@
                                         <input class="form-control" id="hospitalPhoneNo" placeholder="Hospital Phone No" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-default"
-                                            onClick="addHospitalToDb()">
-                                            Add Hospital
+                                        <button class="btn btn-info"
+                                            id="addHospital"
+                                            onClick="addHospitalToDb()"><span class="glyphicon glyphicon-plus"></span>
+                                            Hospital
                                         </button>
                                     </div>
                                 </form>

@@ -3,10 +3,10 @@
         <script type="text/javascript" src="<?php echo base_url().'js/AfterLogin/LocationsView.js'?>"></script>
     </head>
     <body>
-        <div class="row">
+        <div class="row" id="tableView">
             <div class="col-sm-12 col-lg-12">
-                <div class='table-responsive table-bordered'>
-                    <h3>Submitted Locations</h3>
+                <div class="table-responsive table-bordered" id="table-border">
+                    <h3 align="center" class="breadcrumb">Submitted Locations</h3>
                     <table class="table table-striped table-bordered table-hover" id="locationsTable">
                         <thead>
                             <tr class='active'>
@@ -23,8 +23,9 @@
                                     <td><?php echo $row->ratedDate; ?></td>
                                     <td><?php echo $row->availableday; ?></td>
                                     <td>
-                                        <button id="<?php echo $row->doc_locid; ?>" class="btn btn-default"
+                                        <button id="<?php echo $row->doc_locid; ?>" class="btn btn-danger"
                                                 onClick="removeLocation(this.id)">
+                                            <span class="glyphicon glyphicon-remove"></span>
                                             Remove
                                         </button>
                                     </td>
@@ -33,14 +34,17 @@
                         </tbody>
                     </table>
                 </div>
-                <div class='table-responsive table-bordered'>
-                    <h3>Analysed Locations</h3>
+            </div>
+        </div>
+        <div class="row" id="tableView">
+            <div class="col-sm-12 col-lg-12">
+                <div class="table-responsive table-bordered" id="table-border">
+                    <h3 align="center" class="breadcrumb">Analysed Locations</h3>
                     <table class="table table-striped table-bordered table-hover" id="analysedLocationsTable">
                         <thead>
                             <tr class='active'>
                                 <th>Hopital Name</th>
                                 <th>Available Days</th>
-                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,11 +68,6 @@
                                             if($row->sundayavailability)
                                                 echo 'Sunday</br>';
                                         ?>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-default">
-                                            Remove
-                                        </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

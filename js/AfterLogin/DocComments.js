@@ -4,8 +4,8 @@ $(document).ready(function(){
 
 //Delete comment
 function removeComment(commentID) {
-    var confirmation = confirm("Are you sure to delete comment?");
-    if (confirmation == true) {
+    //Button click of delete comment
+    showModalMessage("Delete Comment","Are you sure to Delete Comment?", 4, function(result){
         var tableRowId = "#" + commentID + "TR";
         $(tableRowId).remove();
         //Delete admin account
@@ -15,7 +15,5 @@ function removeComment(commentID) {
             url: URLToCallController,
             type: "POST"
         });
-    } else {
-
-    }
+    });
 }

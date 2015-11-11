@@ -6,11 +6,11 @@
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="col-sm-offset-2">
                             <h3>
-                                Control Comments of Doctors
+                                Manage Comments of Doctors
                             </h3>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                             <button class="btn btn-link" onClick="loadCommentedDoctors()"> Commented Doctors </button>
                         </div>
                         <div class="row" id="tableView">
-                            <div class='table-responsive table-bordered'>
+                            <div class='table-responsive table-bordered' id="table-border">
                                 <table class="table table-striped table-bordered table-hover" id="commentedDoctorTable">
                                     <thead>
                                         <tr class='active'>
@@ -48,9 +48,10 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <button id="<?php echo $row->docid; ?>" class="btn btn-default"
-                                                                onClick="viewComments(this.id,'<?php echo $row->docname; ?>')">
-                                                                View
+                                                    <button id="<?php echo $row->docid; ?>" class="btn btn-info"
+                                                        onClick="viewComments(this.id,'<?php echo $row->docname; ?>')">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                        View
                                                     </button>
                                                 </td>
                                             </tr>

@@ -3,11 +3,15 @@
         <!--CSS -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/AfterLogin.css'?>"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/DataGrid.css'?>"/>
         <!-- JavaScript -->
         <script async defer type="text/javascript" src="<?php echo base_url().'js/AfterLogin.js'?>"></script>
         <script async defer type="text/javascript" src="<?php echo base_url().'js/jquery.dataTables.min.js'?>"></script>
         <script async defer type="text/javascript" src="<?php echo base_url().'js/dataTables.bootstrap.js'?>"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+        <!-- Alert JavaScripts -->
+        <script async defer type="text/javascript" src="<?php echo base_url().'js/bootbox.min.js'?>"></script>
+        <script async defer type="text/javascript" src="<?php echo base_url().'js/ModalMessage.js'?>"></script>
     </head>
     <body>
         <div class="container">

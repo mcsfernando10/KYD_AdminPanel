@@ -4,20 +4,20 @@
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="col-sm-offset-2">
+                        <div align="center">
                             <h3>
                                 App Ratings
                             </h3>
                         </div>
                     </div>
                     <div class="panel-body" id="commentPanel">
-                        <div class="row">
-                            <div class='table-responsive table-bordered'>
-                                <table class='table table-responsive table-bordered table-hover' id="appRatingTable">
+                        <div class="row" id="tableView">
+                            <div class="table-responsive table-bordered" id="table-border">
+                                <table class="table table-responsive table-bordered table-hover" id="appRatingTable">
                                     <thead>
-                                        <tr class='active'>
+                                        <tr class="active">
                                             <th>Rated Date</th>
                                             <th>Rate Level</th>
                                             <th>No of Stars</th>

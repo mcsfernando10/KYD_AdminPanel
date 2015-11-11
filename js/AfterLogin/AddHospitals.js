@@ -87,33 +87,34 @@ function addHospitalToDb()
 {
     //Check whether a hospital is selected or not
     if(undefined  == hospitalName){
-        alert("Please select a Hospital from Markers");
+        showModalMessage("","Please select a Hospital from Markers!", 2);
     } else {
         //Button click of add hospital
-        var confirmation = confirm("Are you sure to add this hospital?");
-        if (confirmation == true) {
-            //Create json array
-            hospitalDetail = {"name":hospitalName, "address":address,
-                "district":district, "phoneNo":phoneNo, "latitude":latitude, "longtitude" : longtitude };
-            //Call relevant method to add hospital to db
-            var submitLocationPageURL = window.location.origin
-                + "/knowyourdoctor/index.php/AfterLoginControllers/AddHospitalsController/addNewHospital";
-            $.ajax({
-                url: submitLocationPageURL,
-                dataType:'JSON',
-                data: {"hospitalDetails" : hospitalDetail},
-                type: "POST",
-                success: function(res) {
-                    alert("Hospital details added successful!!");
-                }
-            });
-        }
-        //Clear textboxes
-        $('#hospitalName').val("Hospital Name");
-        $('#hospitalAddress').val("Hospital Address");
-        $('#hospitalPhoneNo').val("Hospital Phone No");
+        showModalMessage("Add Hospital","Are you sure to add this hospital?", 4, function(result){
+            if (result) {
+                //Create json array
+                hospitalDetail = {"name":hospitalName, "address":address,
+                    "district":district, "phoneNo":phoneNo, "latitude":latitude, "longtitude" : longtitude };
+                //Call relevant method to add hospital to db
+                var submitLocationPageURL = window.location.origin
+                    + "/knowyourdoctor/index.php/AfterLoginControllers/AddHospitalsController/addNewHospital";
+                $.ajax({
+                    url: submitLocationPageURL,
+                    dataType:'JSON',
+                    data: {"hospitalDetails" : hospitalDetail},
+                    type: "POST",
+                    success: function(res) {
+                        alert("Hospital details added successful!!");
+                    }
+                });
+            }
+            //Clear textboxes
+            $('#hospitalName').val("Hospital Name");
+            $('#hospitalAddress').val("Hospital Address");
+            $('#hospitalPhoneNo').val("Hospital Phone No");
 
-        //For validations - clear hospitalName
-        hospitalName = undefined;
+            //For validations - clear hospitalName
+            hospitalName = undefined;
+        });
     }
 }

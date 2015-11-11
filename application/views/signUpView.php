@@ -86,7 +86,8 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-4 col-sm-8">
-                                            <button type="signUp" name="signUp" class="btn btn-default" id="signUpBtn">
+                                            <button type="signUp" name="signUp" class="btn btn-info" id="signUpBtn">
+                                                <span class="glyphicon glyphicon-check"></span>
                                                 Sign Up
                                             </button>
                                         </div>

@@ -6,9 +6,9 @@
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="col-sm-offset-2">
+                        <div align="center">
                             <h3>
                                 Locations of Doctors
                             </h3>
@@ -20,33 +20,36 @@
                             <button class="btn btn-link" onClick="loadLocatedDoctors()"> Located Doctors </button>
                         </div>
                         <div class="row" id="tableView">
-                            <table class="table table-striped table-bordered table-hover" id="locatedDoctorTable">
-                                <thead>
-                                    <tr class='active'>
-                                        <th>Doctor's Name</th>
-                                        <th>Address</th>
-                                        <th>Registered Date</th>
-                                        <th>Qualifications</th>
-                                        <th>Locations</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($locatedDoctors as $row): ?>
-                                        <tr>
-                                            <td><?php echo $row->docname; ?></td>
-                                            <td><?php echo $row->address; ?></td>
-                                            <td><?php echo $row->regdate; ?></td>
-                                            <td><?php echo $row->qualifications; ?></td>
-                                            <td>
-                                                <button id="<?php echo $row->docid; ?>" class="btn btn-default"
-                                                            onClick="viewLocations(this.id,'<?php echo $row->docname; ?>')">
-                                                            View
-                                                </button>
-                                            </td>
+                            <div class='table-responsive table-bordered' id="table-border">
+                                <table class="table table-striped table-bordered table-hover" id="locatedDoctorTable">
+                                    <thead>
+                                        <tr class='active'>
+                                            <th>Doctor's Name</th>
+                                            <th>Address</th>
+                                            <th>Registered Date</th>
+                                            <th>Qualifications</th>
+                                            <th>Locations</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($locatedDoctors as $row): ?>
+                                            <tr>
+                                                <td><?php echo $row->docname; ?></td>
+                                                <td><?php echo $row->address; ?></td>
+                                                <td><?php echo $row->regdate; ?></td>
+                                                <td><?php echo $row->qualifications; ?></td>
+                                                <td>
+                                                    <button id="<?php echo $row->docid; ?>" class="btn btn-info"
+                                                        onClick="viewLocations(this.id,'<?php echo $row->docname; ?>')">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     </br>

@@ -5,18 +5,16 @@ $(document).ready(function(){
 
 //Delete Location
 function removeLocation(doclocationid) {
-    var confirmation = confirm("Are you sure to delete location?");
-    if (confirmation == true) {
+    //Button click of delete location
+    showModalMessage("Delete Submitted Location","Are you sure to Delete Submitted Location?", 4, function(result){
         var tableRowId = "#" + doclocationid + "TR";
         $(tableRowId).remove();
-        //Delete admin account
+        //Delete location
         var URLToCallController = window.location.origin
             + "/knowyourdoctor/index.php/AfterLoginControllers/LocationsViewController/removeLocation/" + doclocationid;
         $.ajax({
             url: URLToCallController,
             type: "POST"
         });
-    } else {
-
-    }
+    });
 }

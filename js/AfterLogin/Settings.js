@@ -21,30 +21,30 @@ function updatePassword(){
 	var newPassword = $('#newPassword').val();
 	var confirmNewPassword = $('#confirmNewPassword').val();
 	if(currentPassword.length == 0 && newPassword.length == 0 && confirmNewPassword.length == 0){
-		alert("Please fill all the fields");
+		showModalMessage("","Please fill all the fields!", 2);
 	} else {
-		var confirmation = confirm("Are you sure to update your password?");
-		//check confirmation
-		if (confirmation == true) {
-			$.ajax({
-				url: window.location.origin
+		showModalMessage("Update Password","Are you sure to update your password?", 4, function(result){
+			if (result) {
+				$.ajax({
+					url: window.location.origin
 					+ "/knowyourdoctor/index.php/AfterLoginControllers/SettingsController/updatePassword",
-				type: "POST",
-				data: {'currentPassword': currentPassword, 'newPassword': newPassword},
-				success: function (res) {
-					if (res) {
-						alert("Password changed successful!");
-					} else {
-						alert("Current password you entered is incorrect!");
+					type: "POST",
+					data: {'currentPassword': currentPassword, 'newPassword': newPassword},
+					success: function (res) {
+						if (res) {
+							alert("Password changed successful!");
+						} else {
+							alert("Current password you entered is incorrect!");
+						}
 					}
-				}
-			});
+				});
 
-			//Clear textfields
-			$('#currentPassword').val("");
-			$('#newPassword').val("");
-			$('#confirmNewPassword').val("");
-		}
+				//Clear textfields
+				$('#currentPassword').val("");
+				$('#newPassword').val("");
+				$('#confirmNewPassword').val("");
+			}
+		});
 	}
 }
 
@@ -94,61 +94,4 @@ function checkValidation(value1,value2) {
 		//$('#changePWBtn').prop('disabled', false);
 		$('#changePWBtn').removeAttr("disabled");
 	}
-}
-
-//Detect password reset button click
-function changePassword() {
-	var currentPassword = document.getElementById("currentPassword").value;
-	var newPassword = document.getElementById("newPassword").value;	
-	var confirmPassword = document.getElementById("confirmNewPassword").value;
-	
-	var errorTag = $('#inputError');
-	//Clear error tags
-	errorTag.text("");
-	
-	//Check passwords are empty, null, or empty string
-	if ( (currentPassword) && (newPassword) && (confirmPassword)) {
-		if (confirm("Are you sure Update Password?")) {
-			//Hard Coded
-			var userName = "aa";
-			//confirm update		
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if(xmlhttp.responseText.trim() == 'Reset') {					
-					alert("Password Updated!!");				
-				} else {
-					alert("Invalid Password");
-				}
-			}
-			url = "ajaxscripts/UpdatePassword.php?userName=";
-			url += userName;
-			url += "&currentPassword=";
-			url += currentPassword;
-			url += "&newPassword=";
-			url += newPassword;
-			
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
-		} 
-	} else {		
-		errorTag.text("Please fill all the fields");
-	}
-
-	//Clear password fields
-	document.getElementById("currentPassword").value = "";
-	document.getElementById("newPassword").value = "";
-	document.getElementById("confirmNewPassword").value = "";	
-	
-	//Remove ticks and green highlights
-	var passwordInputField = $('#passwordInputVal');
-	var passwordValidation = $('#passwordValidation');
-	
-	var confirmPWInputField = $('#confirmPWInputVal');
-	var confirmPWValidation = $('#confrimPasswordValidation');
-
-	passwordInputField.removeClass('has-success');
-	passwordValidation.removeClass('glyphicon-ok');
-	
-	confirmPWInputField.removeClass('has-success');
-	confirmPWValidation.removeClass('glyphicon-ok');
 }

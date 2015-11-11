@@ -5,9 +5,9 @@
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="col-sm-offset-2">
+                        <div align="center">
                             <h3>
                                 Fake Doctors
                             </h3>
@@ -25,9 +25,9 @@
                             </div>
                         </div>
                         </br>
-                        <div class="row">
-                            <div class='table-responsive table-bordered'>
-                                <table class='table table-responsive table-bordered table-hover' id="fakeDoctorTable">
+                        <div class="row" id="tableView">
+                            <div class="table-responsive table-bordered" id="table-border">
+                                <table class="table table-responsive table-bordered table-hover" id="fakeDoctorTable">
                                     <thead>
                                         <tr class='active'>
                                             <th>Fake Reg No</th>
@@ -75,8 +75,9 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <button id="<?php echo $row->reportid; ?>" class="btn btn-default"
+                                                    <button id="<?php echo $row->reportid; ?>" class="btn btn-danger"
                                                             onClick="removeFakeReport(this.id)">
+                                                        <span class="glyphicon glyphicon-remove"></span>
                                                         Remove
                                                     </button>
                                                 </td>

@@ -75,5 +75,28 @@ class admin_user_model extends CI_Model{
     public function deleteAdmin($username){
         $this->db->where('username',$username)->delete('adminusers');
     }
+
+    //Get username for given email address
+    public function getUsernameFrom($email){
+        $this->db->select("*");
+        $this->db->from("adminusers");
+        $this->db->where("email",$email);
+        $userDetailRow = $this->db->get();
+        if($userDetailRow->num_rows() == 1) {
+            $userdetail['username'] = $userDetailRow->result_array()[0]['username'];
+            $userdetail['name'] = $userDetailRow->result_array()[0]['name'];
+            return $userdetail;
+        } else {
+            return -1;
+        }
+    }
+
+    //Update the password
+    public function UpdatePassword($username, $newPassword){
+        $newPassword = array('password' => $newPassword );
+        $this->db->where('username', $username);
+        $this->db->update('adminusers', $newPassword);
+        return true;
+    }
 }
 ?>

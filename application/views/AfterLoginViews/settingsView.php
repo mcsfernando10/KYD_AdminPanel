@@ -1,14 +1,14 @@
 <?php include_once('/../common/header.php'); ?>
         <title>Settings</title>
-         <!-- JavaScript -->
+	 	<!-- JavaScript -->
         <script type="text/javascript" src="<?php echo base_url().'js/AfterLogin/Settings.js'?>"></script>
     </head>
     <body>
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="col-sm-offset-2">
+                        <div align="center">
                             <h3>
                                 Settings - Update your Password
                             </h3>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="panel-body" id="commentPanel">
                         <div class="row">
-                            <form id="passwordReset" class="form-horizontal" method="post">
+                            <form id="passwordReset" class="form-horizontal">
 								<div class="form-group">
 									<label for="inputOldPassword" class="col-sm-4 control-label">
 										Current Password
@@ -53,8 +53,9 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-4 col-sm-8">
-										<button class="btn btn-default"onClick="updatePassword()">
-											Change Password
+										<button class="btn btn-info" onClick="updatePassword()">
+											<span class="glyphicon glyphicon-ok"></span>
+											Done
 										</button>
 									</div>
 								</div>

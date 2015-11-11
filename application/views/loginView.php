@@ -2,6 +2,11 @@
         <title>Admin Login</title>
         <!--CSS -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/Login.css'?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/DataGrid.css'?>"/>
+        <!-- JavaScript -->
+        <script type="text/javascript" src="<?php echo base_url().'js/Login.js'?>"></script>
+        <script type="text/javascript" src="<?php echo base_url().'js/bootbox.min.js'?>"></script>
+        <script type="text/javascript" src="<?php echo base_url().'js/ModalMessage.js'?>"></script>
     </head>
     <body>
         <div class="container">
@@ -49,20 +54,18 @@
                                     ?>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
-                                            <a href="<?php echo base_url().'index.php/LoginController'?>">
-                                                Forgot my password
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="login" name="login" class="btn btn-default">
+                                            <button type="login" name="login" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-log-in"></span>
                                                 Login
                                             </button>
                                             or
-                                            <a class="btn btn-default"
-                                                href="<?php echo base_url().'index.php/SignUpController'?>">
+                                            <a class="btn btn-info" href="<?php echo base_url().'index.php/SignUpController'?>">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
                                                 Sign Up
+                                            </a>
+                                            <a class="btn btn-danger" href="#" id="forgotPassword">
+                                                <span class="glyphicon glyphicon-question-sign"></span>
+                                                Forgot Password
                                             </a>
                                         </div>
                                     </div>

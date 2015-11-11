@@ -1,0 +1,19 @@
+#tableView{
+	padding: 7px;
+}
+
+#table-border{
+	padding: 7px;
+}
+
+#help-text{
+	display:block;
+	margin-top:5px;
+	margin-bottom:10px;
+	color:#00bfff;
+	font-size: 10px;
+}
+
+#title-red{
+	color: red;
+}

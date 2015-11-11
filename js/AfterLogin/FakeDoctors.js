@@ -4,20 +4,21 @@ $(document).ready(function(){
 
 //Delete comment
 function removeFakeReport(reportID) {
-    var confirmation = confirm("Are you sure to delete report?");
-    if (confirmation == true) {
-        var tableRowId = "#" + reportID + "TR";
-        $(tableRowId).remove();
-        //Delete admin account
-        var URLToCallController = window.location.origin
-            + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
-        $.ajax({
-            url: URLToCallController,
-            type: "POST"
-        });
-    } else {
+    showModalMessage("Delete", "Are you sure to delete report?", 4, function(result){
+        if(result){
+            var tableRowId = "#" + reportID + "TR";
+            $(tableRowId).remove();
+            //Delete admin account
+            var URLToCallController = window.location.origin
+                + "/knowyourdoctor/index.php/AfterLoginControllers/FakeDoctorsController/removeReport/" + reportID;
+            $.ajax({
+                url: URLToCallController,
+                type: "POST"
+            });
+        } else {
 
-    }
+        }
+    });
 }
 
 //Generate Report

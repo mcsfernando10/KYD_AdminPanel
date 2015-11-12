@@ -32,11 +32,11 @@
                                         <input class="form-control" id="hospitalPhoneNo" placeholder="Hospital Phone No" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-info"
-                                            id="addHospital"
-                                            onClick="addHospitalToDb()"><span class="glyphicon glyphicon-plus"></span>
+                                        <a class="btn btn-info"
+                                            id="addHospitalBtn">
+                                            <span class="glyphicon glyphicon-plus"></span>
                                             Hospital
-                                        </button>
+                                        </a>
                                     </div>
                                 </form>
                             </div>

@@ -1,3 +1,10 @@
+$(document).ready(function() {
+    //Add hospitals button
+    $("#addHospitalBtn").click(function () {
+        addHospitalToDb();
+    });
+});
+
 //Variables to store hospital details
 var hospitalName;
 var address;
@@ -104,7 +111,7 @@ function addHospitalToDb()
                     data: {"hospitalDetails" : hospitalDetail},
                     type: "POST",
                     success: function(res) {
-                        alert("Hospital details added successful!!");
+                        showModalMessage("","Hospital details added successful!!", 1);
                     }
                 });
             }

@@ -32,6 +32,7 @@
                                             <?php echo "Hello, " . $loggedName . "(Admin)";?>
                                         </label>
                                          <a class="btn btn-primary" href="<?php echo base_url().'index.php/AfterLoginController/logout'?>">
+                                         <span class="glyphicon glyphicon-log-out"></span>
                                             Log out
                                         </a>
                                     </form>

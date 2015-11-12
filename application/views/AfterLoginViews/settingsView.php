@@ -53,7 +53,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-4 col-sm-8">
-										<button class="btn btn-info" onClick="updatePassword()">
+										<button id=""class="btn btn-info" onClick="updatePassword()">
 											<span class="glyphicon glyphicon-ok"></span>
 											Done
 										</button>

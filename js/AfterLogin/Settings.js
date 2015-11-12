@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	//Disable Done Button
+	$('#doneButton').attr("disabled","disabled");
+
+	//Update password button click event
+	$("#doneButton").click(function () {
+		updatePassword();
+	});
+
 	//Validate password after each key press
 	$('#newPassword').bind('input', function() {
 		var typedPassword = $(this).val();
@@ -32,9 +40,9 @@ function updatePassword(){
 					data: {'currentPassword': currentPassword, 'newPassword': newPassword},
 					success: function (res) {
 						if (res) {
-							alert("Password changed successful!");
+							showModalMessage("","Password Changed Successfully!", 1);
 						} else {
-							alert("Current password you entered is incorrect!");
+							showModalMessage("Error","Could not Update Password!", 3);
 						}
 					}
 				});
@@ -43,6 +51,13 @@ function updatePassword(){
 				$('#currentPassword').val("");
 				$('#newPassword').val("");
 				$('#confirmNewPassword').val("");
+
+				$('#passwordInputVal').removeClass('has-success');
+				$('#passwordValidation').removeClass('glyphicon-ok');
+				$('#confirmPWInputVal').removeClass('has-success');
+				$('#confrimPasswordValidation').removeClass('glyphicon-ok');
+				//Disable the button
+				$('#doneButton').attr("disabled","disabled");
 			}
 		});
 	}
@@ -53,45 +68,45 @@ function checkValidation(value1,value2) {
 	//Do the validation
 	var passwordInputField = $('#passwordInputVal');
 	var passwordValidation = $('#passwordValidation');
-	
+
 	var confirmPWInputField = $('#confirmPWInputVal');
 	var confirmPWValidation = $('#confrimPasswordValidation');
-	
+
 	//Check passwords are equals or entered one is a empty string
-	if ((value1.length) == 0 || (value1!=value2)) 
-	{ 
+	if ((value1.length) == 0 || (value1!=value2))
+	{
 		//Display cross, highlight field with red and disable the button
 		passwordInputField.removeClass('has-success');
 		passwordInputField.addClass('has-error');
-		
-        passwordValidation.removeClass('glyphicon-ok');
+
+		passwordValidation.removeClass('glyphicon-ok');
 		passwordValidation.addClass('glyphicon-remove');
-		
+
 		confirmPWInputField.removeClass('has-success');
 		confirmPWInputField.addClass('has-error');
-		
-        confirmPWValidation.removeClass('glyphicon-ok');
+
+		confirmPWValidation.removeClass('glyphicon-ok');
 		confirmPWValidation.addClass('glyphicon-remove');
-		
+
 		//$('#changePWBtn').prop('disabled', true);
-		$('#changePWBtn').attr("disabled","disabled");
-    }
+		$('#doneButton').attr("disabled","disabled");
+	}
 	else
-	{		
+	{
 		//Display tick, highlight field with green and enable the button
 		passwordInputField.removeClass('has-error');
 		passwordInputField.addClass('has-success');
-		
+
 		passwordValidation.removeClass('glyphicon-remove');
 		passwordValidation.addClass('glyphicon-ok');
-		
+
 		confirmPWInputField.removeClass('has-error');
 		confirmPWInputField.addClass('has-success');
-		
-        confirmPWValidation.removeClass('glyphicon-remove');
+
+		confirmPWValidation.removeClass('glyphicon-remove');
 		confirmPWValidation.addClass('glyphicon-ok');
-		
+
 		//$('#changePWBtn').prop('disabled', false);
-		$('#changePWBtn').removeAttr("disabled");
+		$('#doneButton').removeAttr("disabled");
 	}
 }

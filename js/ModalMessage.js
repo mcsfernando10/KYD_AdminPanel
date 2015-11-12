@@ -37,8 +37,9 @@ function showModalMessage(Title, Message, type, callback) {
 	}
 	else if(type == 3) {
 		bootbox.dialog({
-			message: '<img src="/knowyourdoctor/img/error_icon.png" width="48px" height="48px" style="margin-right: 7px"/>' +
-			Message,
+			message: Message,
+			title: '<img src="/knowyourdoctor/img/error_icon.png" width="48px" height="48px" style="margin-right: 7px"/>' +
+			Title,
 			buttons: {
 				ok: {
 					label: "OK",
@@ -80,9 +81,11 @@ function showModalMessage(Title, Message, type, callback) {
 
 function showSendEmailForm(callback){
 	bootbox.dialog({
-			title: '<img src="/knowyourdoctor/img/email_icon.png" width="30px" height="30px" style="margin-right: 7px"/> ' +
+			title:
+			'<img src="/knowyourdoctor/img/email_icon.png" width="30px" height="30px" style="margin-right: 7px"/> ' +
 			'<span id="title-red">Forgot Password?</span>',
-			message:'<div class="row">  ' +
+			message:
+			'<div class="row">  ' +
 			'<div class="col-md-12"> ' +
 			'<form class="form-horizontal"> ' +
 			'<div class="form-group has-feedback" id="emailInputVal"> ' +
@@ -90,12 +93,15 @@ function showSendEmailForm(callback){
 			'<div class="col-md-4"> ' +
 			'<input id="email" name="email" type="text" placeholder="Your Email" ' +
 			'class="form-control input-md"> ' +
-			'<span class="glyphicon form-control-feedback" aria-hidden="true" id="emailValidation"></span>' +
+			'<span class="glyphicon form-control-feedback" aria-hidden="true" ' +
+			'id="emailValidation"></span>' +
 			'<span id="help-text">We will send you an Email. ' +
-			'Follow the guidelines on it.</span>' +
-			' </div> ' +
+			'Please Follow the guidelines in it.</span>' +
 			'</div>' +
-			'</form>',
+			'</div>' +
+			'</form>' +
+			'</div>' +
+			'</div>',
 			buttons: {
 				success: {
 					label: "Send",

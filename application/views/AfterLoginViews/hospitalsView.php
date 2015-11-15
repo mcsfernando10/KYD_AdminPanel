@@ -22,7 +22,7 @@
                                             <th>Hospital Name</th>
                                             <th>Hospital Address</th>
                                             <th>Telephone No</th>
-                                            <th>Remove Remove</th>
+                                            <th>Remove Hospital</th>
                                         </tr>
                                     </thead>
                                     <tbody>

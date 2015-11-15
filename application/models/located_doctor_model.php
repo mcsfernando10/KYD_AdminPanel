@@ -22,16 +22,30 @@ class located_doctor_model extends CI_Model
     //Get doctor details and available hospitals from submitted locations
     public function getAllDocAndLocations($latitude, $longtitude, $date)
     {
-        $query  = "SELECT h.id, h.name, h.address, h.district, h.latitude, h.longtitude, dd.docid, dd.docname,  ";
-        $query .= "SQRT( POW( 69.1 * ( latitude - $latitude ) , 2 ) + POW( 69.1 * ($longtitude - longtitude ) ";
+        $query  = "SELECT distinct ad.docid, dd.docname, dd.address, dd.regdate, dd.qualifications,";
+        $query .= "SQRT( POW( 69.1 * ( latitude - $latitude) , 2 ) + POW( 69.1 * ($longtitude - longtitude)";
         $query .= "* COS( latitude / 57.3 ) , 2 ) ) AS distance ";
-        $query .= "FROM hospitals h, doclocation dl, docdetails dd ";
-        $query .= "WHERE h.id = dl.locationid AND dl.docid = dd.docid AND DATE(dl.ratedDate) > $date ";
-        $query .= "HAVING distance <3 ";
+        $query .= "FROM hospitals h, docdetails dd, analysedoclocation ad ";
+        $query .= "WHERE h.id = ad.locationid AND ad.docid = dd.docid AND DATE(ad.lastRatedDate) = '$date' ";
+        $query .= "HAVING distance <100 ";
         $query .= "ORDER BY distance";
-        $nearestDocsAndHos = $this->db->query($query);
-        $docsAndHosJSONData = array("locatedDoctors"=>$nearestDocsAndHos->result_array());
+        $nearestDoctors = $this->db->query($query);
+        $docsAndHosJSONData = array("locatedDoctors"=>$nearestDoctors->result_array());
         return json_encode($docsAndHosJSONData );
+    }
+
+    //Get all locations of a particular doctor
+    public function getAllLocationsOfDoctor($doctorID, $latitude, $longtitude, $date){
+        $query  = "SELECT ad.lastRatedDate, h.id, h.name, h.address, h.latitude, h.longtitude, dd.docid, dd.docname,  ";
+        $query .= "SQRT( POW( 69.1 * ( latitude - $latitude) , 2 ) + POW( 69.1 * ($longtitude - longtitude) ";
+        $query .= "* COS( latitude / 57.3 ) , 2 ) ) AS distance ";
+        $query .= "FROM hospitals h, docdetails dd, analysedoclocation ad ";
+        $query .= "WHERE h.id = ad.locationid AND ad.docid = $doctorID  AND ad.docid = dd.docid AND DATE(ad.lastRatedDate) = '$date' ";
+        $query .= "HAVING distance <100 ";
+        $query .= "ORDER BY distance";
+        $nearestDocHospitals = $this->db->query($query);
+        $HospitalJSONData = array("locationsOfDoctor"=>$nearestDocHospitals->result_array());
+        return json_encode($HospitalJSONData );
     }
 
     //Get all doctor details who are having submitted locations

@@ -60,8 +60,7 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location,
         title: place.name,
-        icon:image_hospital,
-        animation:google.maps.Animation.BOUNCE
+        icon:image_hospital
     });
 
     var infoWindow = new google.maps.InfoWindow();

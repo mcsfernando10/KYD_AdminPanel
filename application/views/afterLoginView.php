@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="panel-footer" align="center" style="font-size: smaller; font-weight: bold">
-                            &#9400;2015 Sri Lanka Medical Council (SLMC)
+                            &#9400;2015 SLIIT
                         </div>
                     </div>
                 </div>

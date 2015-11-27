@@ -3,9 +3,9 @@
 class ForgotAdminDetailController extends CI_Controller{
     //Send email to reset the password
     public function sendEmail(){
-        //$emailAddressJSON = $this->input->post('emailAddJSON');
-        //$emailAddress = $emailAddressJSON['emailAdd'];
-        $emailAddress = "mcsfernando10@gmail.com";
+        $emailAddressJSON = $this->input->post('emailAddJSON');
+        $emailAddress = $emailAddressJSON['emailAdd'];
+        //$emailAddress = "mcsfernando10@gmail.com";
         //Check email address exists
         $this->load->model('admin_user_model');
         $userDetail = $this->admin_user_model->getUsernameFrom($emailAddress);
